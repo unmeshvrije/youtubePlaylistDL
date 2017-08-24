@@ -128,12 +128,11 @@ def download_Video_Audio(path, vid_url, file_no):
         print(yt.filename, "already exists in this directory! Skipping video...")
 
     try:
-        os.rename(yt.filename+'.mp4',str(file_no)+'.mp4')
-        aud= 'ffmpeg -i '+str(file_no)+'.mp4'+' '+str(file_no)+'.wav'
-        final_audio='lame '+str(file_no)+'.wav'+' '+str(file_no)+'.mp3'
+        aud= 'ffmpeg -i \"'+yt.filename+'.mp4\"'+' \"'+yt.filename+'.wav\"'
+        final_audio='lame \"'+yt.filename+'.wav\"'+' \"'+yt.filename+'.mp3\"'
         os.system(aud)
         os.system(final_audio)
-        os.remove(str(file_no)+'.wav')
+        os.remove('\"' + yt.filename+'.wav\"')
         print("sucessfully converted",yt.filename, "into audio!")
     except OSError:
         print(yt.filename, "There is some problem with the file names...")
